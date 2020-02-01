@@ -7,7 +7,7 @@ public class cameraLock : MonoBehaviour
     public float maxDis;
     private void Update()
     {       
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit Hit;
             if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out Hit, maxDis))
