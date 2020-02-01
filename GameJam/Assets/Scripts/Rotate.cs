@@ -8,6 +8,6 @@ public class Rotate : MonoBehaviour
 
     public void I_Rot()
     {
-        gameObject.GetComponentInChildren<Transform>().transform.Rotate(0, rot, 0);
+        gameObject.transform.Rotate(0, rot, 0);
     }
 }
