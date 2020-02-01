@@ -26,6 +26,7 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerMovement();
         if (controller.isGrounded)
         {
             vSpeed = 0;
@@ -34,7 +35,7 @@ public class ThirdPersonController : MonoBehaviour
                 vSpeed = jumpvelocity;
             }
         }
-        PlayerMovement();
+        
     }
 
     void PlayerMovement()
