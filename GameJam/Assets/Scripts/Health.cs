@@ -12,9 +12,13 @@ public class Health : MonoBehaviour
     public float drain=1;
     public float charge = 1;
     public bool isCharging;
+    AudioSource audi;
+    public AudioClip dead;
+
     void Start()
     {
         health = maxHealth;
+        audi = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,7 +39,7 @@ public class Health : MonoBehaviour
         healthbar.fillAmount = health / maxHealth;
         if(health <= 0)
         {
-            Death();
+            StartCoroutine("Death");
         }
     }
     void Charge()
@@ -47,8 +51,12 @@ public class Health : MonoBehaviour
         }
         healthbar.fillAmount = health / maxHealth;
     }
-    void Death()
+    IEnumerator Death()
     {
+        audi.PlayOneShot(dead);
+        GetComponent<ThirdPersonController>().enabled=false;
+        GetComponentInChildren <ThirdPersonCamera>().enabled = false;
+        yield return new WaitForSeconds(6);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -15,12 +15,16 @@ public class ThirdPersonController : MonoBehaviour
     public float jumpApex = .4f;
     float jumpvelocity;
     float vSpeed;
+
+    AudioSource audi;
+    public AudioClip walking;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         gravity = -(2 * jumpheight) / Mathf.Pow(jumpApex, 2);
         jumpvelocity = Mathf.Abs(gravity) * jumpApex;
+        audi = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,12 +46,17 @@ public class ThirdPersonController : MonoBehaviour
     {
         float hor = Input.GetAxisRaw("Horizontal");
         float ver = Input.GetAxisRaw("Vertical");
+        if (hor > 0 || ver > 0)
+        {
+            audi.PlayOneShot(walking);
+        }
         Vector3 playerMovement = transform.right * hor + transform.forward * ver;
         controller.Move(playerMovement*speed*Time.deltaTime);
 
         
         vSpeed += gravity * Time.deltaTime;
         velocity.y = vSpeed;
+        
 
         controller.Move(velocity * Time.deltaTime);
     }
