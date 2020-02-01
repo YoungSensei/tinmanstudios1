@@ -8,7 +8,7 @@ public class ButtonManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Lv.1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public static bool GameIsPaused = false;
@@ -53,7 +53,7 @@ public class ButtonManager : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
     }
 
     public static bool OptionIsEnabled = false;
