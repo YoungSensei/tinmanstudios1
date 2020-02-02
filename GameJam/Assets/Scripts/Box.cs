@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    public bool PowerOn;
+    public GameObject PowerOn;
     GameObject gm;
 
     private void Start()
     {
-        PowerOn = false;
+        
         gm = GameObject.Find("GameManager");
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Box")
         {
-            other.GetComponent<Renderer>().material.color = Color.blue;
+            other.GetComponent<Renderer>().material.color = Color.red;
             gm.GetComponent<GameManager>().powerLevel++;
-            PowerOn = true;
+            PowerOn.GetComponent<Animator>().SetBool("Power", true);
         }
     }
 }
