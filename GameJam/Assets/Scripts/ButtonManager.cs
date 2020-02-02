@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 
 public class ButtonManager : MonoBehaviour
 {
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -20,13 +21,18 @@ public class ButtonManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+
             if (GameIsPaused)
             {
                 Resume();
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 Pause();
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
     }
@@ -36,6 +42,8 @@ public class ButtonManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Pause()
