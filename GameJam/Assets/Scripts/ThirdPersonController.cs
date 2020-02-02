@@ -46,8 +46,9 @@ public class ThirdPersonController : MonoBehaviour
     {
         float hor = Input.GetAxisRaw("Horizontal");
         float ver = Input.GetAxisRaw("Vertical");
-        if (hor > 0 || ver > 0)
+        if (hor != 0 || ver != 0)
         {
+            if(!audi.isPlaying)
             audi.PlayOneShot(walking);
         }
         Vector3 playerMovement = transform.right * hor + transform.forward * ver;

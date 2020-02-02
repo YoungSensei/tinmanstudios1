@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
     public bool isCharging;
     AudioSource audi;
     public AudioClip dead;
+    
+    public GameObject DeathP;
 
     void Start()
     {
@@ -39,6 +41,7 @@ public class Health : MonoBehaviour
         healthbar.fillAmount = health / maxHealth;
         if(health <= 0)
         {
+            health = 0;
             StartCoroutine("Death");
         }
     }
@@ -50,13 +53,21 @@ public class Health : MonoBehaviour
             health = maxHealth;
         }
         healthbar.fillAmount = health / maxHealth;
+        
     }
     IEnumerator Death()
     {
-        audi.PlayOneShot(dead);
+        if(!audi.isPlaying)
+        audi.PlayOneShot(dead,.5f);
+
+
         GetComponent<ThirdPersonController>().enabled=false;
         GetComponentInChildren <ThirdPersonCamera>().enabled = false;
-        yield return new WaitForSeconds(6);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        DeathP.GetComponent<Animator>().SetBool("Died",true);
+        yield return new WaitForSeconds(dead.length);
+        audi.enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

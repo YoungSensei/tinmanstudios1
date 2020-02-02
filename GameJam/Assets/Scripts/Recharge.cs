@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Recharge : MonoBehaviour
 {
+    public AudioClip charging;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "Player")
         {
             other.GetComponent<Health>().isCharging = true;
+            if (!GetComponent<AudioSource>().isPlaying)
+                GetComponent<AudioSource>().PlayOneShot(charging, .05f);
         }
     }
 
@@ -17,6 +21,9 @@ public class Recharge : MonoBehaviour
         if (other.name == "Player")
         {
             other.GetComponent<Health>().isCharging = false;
+
+            gameObject.GetComponent<AudioSource>().Stop();
         }
+        
     }
 }

@@ -18,7 +18,15 @@ public class Box : MonoBehaviour
         {
             other.GetComponent<Renderer>().material.color = Color.red;
             gm.GetComponent<GameManager>().powerLevel++;
-            PowerOn.GetComponent<Animator>().SetBool("Power", true);
+            if(PowerOn == null)
+            {
+                return;
+            }
+            else
+            {
+                PowerOn.GetComponent<Animator>().SetBool("Power", true);
+            }
+            
         }
     }
 }
