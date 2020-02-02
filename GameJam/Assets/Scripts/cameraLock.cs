@@ -17,7 +17,7 @@ public class cameraLock : MonoBehaviour
                     Hit.transform.GetComponentInParent<Rotate>().I_Rot();
                 }
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * Hit.distance, Color.yellow);
-                Debug.Log(Hit.collider.name);
+                //Debug.Log(Hit.collider.name);
             }
         }
     }

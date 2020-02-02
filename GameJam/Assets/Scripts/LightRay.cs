@@ -39,6 +39,7 @@ public class LightRay : MonoBehaviour
             Debug.DrawRay(LightPos.transform.position, transform.TransformDirection(Vector3.forward) * Hit.distance, Color.red);
             if (Hit.collider.name == "LightTriggerSpace")
             {
+                //Debug.Log("Box hit");
                 //LaserPointer.SetPosition(1, Hit.point);
                 GameObject MirPar = Hit.collider.gameObject;
                 if (MirPar != null)
@@ -53,19 +54,31 @@ public class LightRay : MonoBehaviour
         }
     }
 
-    public void Bubble(GameObject Bounce, RaycastHit Info)
+    public void Bubble(GameObject Bounce, RaycastHit Info/*, int Terminate = 0*/)
     {
-
+        //if (Terminate < 100)
+        //{
+        //    return;
+        //}
+        //Terminate++;
         if (!MirrorHit.Contains(Bounce))
         {
-            Debug.Log(Bounce);
+            //Debug.Log(Bounce);
             MirrorHit.Add(Bounce);
         }
         else if (MirrorHit.Contains(Bounce))
         {
+            //GameObject Empty = Bounce.transform.GetChild(0).gameObject;
+            //Debug.Log(Empty);
+            //if (Empty != null)
+            //{
+            //    Debug.Log(Empty);
+            //}
+          
             RaycastHit Rich;
-            if (Physics.Raycast(Bounce.transform.position, Bounce.transform.forward, out Rich, Mathf.Infinity))
+            if (Physics.Raycast(Bounce.GetComponent<Renderer>().bounds.center, Bounce.transform.forward, out Rich, Mathf.Infinity))
             {
+                Debug.Log(Rich.collider.name);
                 Debug.DrawRay(Bounce.transform.position, Bounce.transform.TransformDirection(Vector3.forward) * Rich.distance, Color.yellow);
                 if (Rich.collider.name == "LightTriggerSpace")
                 {
@@ -76,10 +89,6 @@ public class LightRay : MonoBehaviour
                         Bubble(Recast, Rich);
                     }
                 }
-                else if (Rich.collider.GetComponent<ButRay>() != null)
-                {
-                    Rich.collider.GetComponent<ButRay>().Activated();
-                }                
             }
         }
     }
