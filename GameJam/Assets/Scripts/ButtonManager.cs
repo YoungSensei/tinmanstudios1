@@ -53,11 +53,22 @@ public class ButtonManager : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public static bool OptionIsEnabled = false;
+    public static bool WindRiddleIsEnabled = false;
+    public static bool ClockRiddleIsEnabled = false;
+    public static bool WaterRiddleIsEnabled = false;
+    public static bool ShadowRiddleIsEnabled = false;
+    public static bool MirrorRiddleIsEnabled = false;
     public GameObject optionMenuUI;
+    public GameObject windButton;
+    public GameObject clockButton;
+    public GameObject waterButton;
+    public GameObject shadowButton;
+    public GameObject mirrorButton;
+
 
     // Update is called once per frame
 
@@ -66,10 +77,72 @@ public class ButtonManager : MonoBehaviour
         optionMenuUI.SetActive(true);
         OptionIsEnabled = true;
     }
+
     public void Disable()
     {
         optionMenuUI.SetActive(false);
         OptionIsEnabled = false;
+    }
+
+    public void RiddleWiEn()
+    {
+        windButton.SetActive(true);
+        WindRiddleIsEnabled = true;
+        Time.timeScale = 0f;
+    }
+    public void RiddleWiDis()
+    {
+        windButton.SetActive(false);
+        WindRiddleIsEnabled = false;
+        Time.timeScale = 1f;
+    }
+    public void RiddleCloEn()
+    {
+        clockButton.SetActive(true);
+        ClockRiddleIsEnabled = true;
+        Time.timeScale = 0f;
+    }
+    public void RiddleCloDis()
+    {
+        clockButton.SetActive(false);
+        ClockRiddleIsEnabled = false;
+        Time.timeScale = 1f;
+    }
+    public void RiddleWatEn()
+    {
+        waterButton.SetActive(true);
+        WaterRiddleIsEnabled = true;
+        Time.timeScale = 0f;
+    }
+    public void RiddleWatDis()
+    {
+        waterButton.SetActive(false);
+        WaterRiddleIsEnabled = false;
+        Time.timeScale = 1f;
+    }
+    public void RiddleShadEn()
+    {
+        shadowButton.SetActive(true);
+        ShadowRiddleIsEnabled = true;
+        Time.timeScale = 0f;
+    }
+    public void RiddleShadDis()
+    {
+        shadowButton.SetActive(false);
+        ShadowRiddleIsEnabled = false;
+        Time.timeScale = 1f;
+    }
+    public void RiddleMirEn()
+    {
+        mirrorButton.SetActive(true);
+        MirrorRiddleIsEnabled = true;
+        Time.timeScale = 0f;
+    }
+    public void RiddleMirDis()
+    {
+        mirrorButton.SetActive(false);
+        MirrorRiddleIsEnabled = false;
+        Time.timeScale = 1f;
     }
 
     public AudioMixer audioMixer;
